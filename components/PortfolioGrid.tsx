@@ -4,16 +4,16 @@
    components/PortfolioGrid.tsx
    Bento Grid Showcase
    • Strict CSS Grid (grid-cols-4) with fixed 300px row heights
-   • Shows the absolute best 6 pieces using specific interlocking spans
+   • Shows the absolute best 9 pieces using specific interlocking spans
    • Single "VIEW ALL WORK" button at the bottom
    • mix-blend-multiply for seamless integration into #e8e8e8 background
 ───────────────────────────────────────────────────────────────────────────── */
 
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { allPortfolioItems } from '@/lib/data';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import MagneticButton from '@/components/MagneticButton';
 
 // The absolute best 9 pieces as requested by the user
@@ -38,94 +38,144 @@ const parallaxSpeeds = [0.05, -0.05, 0.08, -0.02, 0.04, -0.06, 0.03, -0.04, 0.06
 
 export default function PortfolioGrid() {
   const containerRef = useRef<HTMLElement>(null);
+  const [selectedImage, setSelectedImage] = useState<typeof bestPieces[0] | null>(null);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
 
   return (
-    <section ref={containerRef} id="portfolio" className="relative bg-[#e8e8e8] py-24 md:py-36 min-h-screen">
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-        
-        {/* ── Header ── */}
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-        >
-          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black/50 mb-4 block">
-            Featured
-          </span>
-          <h2 className="font-serif text-4xl md:text-6xl font-bold text-black mb-4 leading-none">
-            Selected Works.
-          </h2>
-        </motion.div>
+    <>
+      <section ref={containerRef} id="portfolio" className="relative bg-[#e8e8e8] py-24 md:py-36 min-h-screen">
+        <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+          
+          {/* ── Header ── */}
+          <motion.div
+            className="mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+          >
+            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-black/50 mb-4 block">
+              Featured
+            </span>
+            <h2 className="font-serif text-4xl md:text-6xl font-bold text-black mb-4 leading-none">
+              Selected Works.
+            </h2>
+          </motion.div>
 
-        {/* ── Bento Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[300px] gap-4 md:gap-6">
-          {bestPieces.map((item, i) => {
-            // Create a custom parallax value for this specific item
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const y = useTransform(scrollYProgress, [0, 1], [0, parallaxSpeeds[i] * 1000]);
+          {/* ── Bento Grid ── */}
+          <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[300px] gap-4 md:gap-6">
+            {bestPieces.map((item, i) => {
+              // Create a custom parallax transform for each item
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              const y = useTransform(scrollYProgress, [0, 1], [0, (typeof window !== 'undefined' ? window.innerHeight : 1000) * parallaxSpeeds[i]]);
 
-            return (
-              <motion.article
-                key={item.id}
-                style={{ y }}
+              return (
+                <motion.div
+                  key={item.id}
+                  style={{ y }}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`group relative overflow-hidden bg-black/5 cursor-pointer ${bentoSpans[i]}`}
+                  data-cursor="EXPAND"
+                  onClick={() => setSelectedImage(item)}
+                  layoutId={`grid-image-${item.id}`}
+                >
+                  {/* Image Container */}
+                  <div className="absolute inset-0">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+
+                  {/* Title Overlay (Hidden on hover to show full image) */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <h3 className="text-white font-serif text-2xl drop-shadow-md">{item.title}</h3>
+                    <p className="text-white/80 font-mono text-xs uppercase tracking-widest mt-1 drop-shadow-md">
+                      {item.category}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* ── View All Work Button ── */}
+          <motion.div
+            className="mt-20 flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+          >
+            <MagneticButton>
+              <Link
+                href="/collections"
+                className="inline-flex items-center justify-center border border-black bg-transparent text-black font-mono text-[11px] uppercase tracking-widest px-10 py-5 hover:bg-black hover:text-white transition-colors duration-300"
                 data-cursor="VIEW"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`group relative overflow-hidden bg-black/5 cursor-pointer ${bentoSpans[i]}`}
               >
-                {/* Image Container */}
-                <div className="absolute inset-0">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                View All Work
+              </Link>
+            </MagneticButton>
+          </motion.div>
 
-                {/* Hover Dark Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-500" />
-                
-                {/* Hover Text Content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-6 text-center">
-                  <span className="font-mono text-white/70 text-[10px] tracking-[0.2em] uppercase mb-2">
-                    {item.category}
-                  </span>
-                  <h3 className="font-serif text-white text-2xl md:text-3xl font-bold">
-                    {item.title}
-                  </h3>
-                </div>
-              </motion.article>
-            );
-          })}
         </div>
+      </section>
 
-        {/* ── View All Work Button ── */}
-        <motion.div
-          className="mt-20 flex justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-        >
-          <MagneticButton>
-            <Link
-              href="/collections"
-              className="inline-flex items-center justify-center border border-black bg-transparent text-black font-mono text-[11px] uppercase tracking-widest px-10 py-5 hover:bg-black hover:text-white transition-colors duration-300"
+      {/* ── Fullscreen Lightbox Modal ── */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 md:p-12 cursor-pointer"
+            onClick={() => setSelectedImage(null)}
+            data-cursor="CLOSE"
+          >
+            {/* Close Button Hint */}
+            <div className="absolute top-8 right-8 text-white/50 font-mono text-xs tracking-widest uppercase pointer-events-none">
+              Click anywhere to close
+            </div>
+
+            <motion.div
+              layoutId={`grid-image-${selectedImage.id}`}
+              className="relative w-full h-full max-w-7xl max-h-[90vh]"
             >
-              View All Work
-            </Link>
-          </MagneticButton>
-        </motion.div>
-
-      </div>
-    </section>
+              <Image
+                src={selectedImage.image}
+                alt={selectedImage.title}
+                fill
+                className="object-contain"
+                sizes="100vw"
+                priority
+              />
+            </motion.div>
+            
+            {/* Title / Info in Modal */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ delay: 0.2 }}
+              className="absolute bottom-8 left-8 pointer-events-none"
+            >
+              <h2 className="text-white font-serif text-3xl md:text-5xl">{selectedImage.title}</h2>
+              <p className="text-white/60 font-mono text-xs uppercase tracking-[0.2em] mt-2">
+                {selectedImage.category}
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
