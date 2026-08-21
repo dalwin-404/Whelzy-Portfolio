@@ -1,0 +1,114 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   globals.css
+   Tailwind directives + CSS custom properties + global base styles
+───────────────────────────────────────────────────────────────────────────── */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Custom Properties ────────────────────────────────────────────────── */
+/* Note: Fonts are loaded via next/font/google in app/layout.tsx             */
+:root {
+  --color-bg:       #0a0a0a;
+  --color-surface:  #111111;
+  --color-border:   #222222;
+  --color-muted:    #555555;
+  --color-text:     #f0f0f0;
+  --color-accent:   #ffffff;
+
+  --font-serif:     'Playfair Display', Georgia, serif;
+  --font-mono:      'Space Mono', monospace;
+  --font-sans:      'Inter', system-ui, sans-serif;
+}
+
+/* ── Lenis smooth scroll reset ────────────────────────────────────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    /* Hide scrollbar visually but allow scrolling (Lenis handles scroll) */
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Selection colour */
+  ::selection {
+    background-color: #ffffff22;
+    color: #ffffff;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 1px solid var(--color-muted);
+    outline-offset: 4px;
+  }
+}
+
+/* ── Utility classes ──────────────────────────────────────────────────────── */
+@layer utilities {
+  .font-serif   { font-family: var(--font-serif); }
+  .font-mono    { font-family: var(--font-mono); }
+  .font-sans    { font-family: var(--font-sans); }
+
+  /* Thin letter-spacing used on all mono labels */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;      /* 10px */
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Hero gradient vignette overlay */
+  .hero-vignette {
+    background: radial-gradient(ellipse at center, transparent 30%, #0a0a0a 100%);
+  }
+
+  /* Hide scrollbar for horizontal containers */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
