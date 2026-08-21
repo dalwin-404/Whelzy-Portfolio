@@ -130,14 +130,14 @@ export default function CollectionsPage() {
                     Actually, if we don't set height, next/image with 'fill' requires a parent height.
                     Instead, we will assign random aspect ratios based on index for the masonry effect. */}
                 <div 
-                  className="relative w-full mix-blend-multiply" 
+                  className="relative w-full" 
                   style={{ aspectRatio: (item.id.length % 2 === 0) ? '3/4' : '4/5' }}
                 >
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover object-center grayscale transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>

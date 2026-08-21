@@ -57,7 +57,7 @@ export default function About() {
               src="/images/whelzy-image.png"
               alt="Whelzy — Graphic Designer"
               fill
-              className="object-cover object-center grayscale"
+              className="object-cover object-center"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>

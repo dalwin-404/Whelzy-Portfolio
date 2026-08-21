@@ -16,21 +16,25 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import MagneticButton from '@/components/MagneticButton';
 
-// The absolute best 6 pieces
-const bestPieces = allPortfolioItems.slice(0, 6);
+// The absolute best 9 pieces as requested by the user
+const bestPieces = allPortfolioItems.slice(0, 9);
 
-// Hardcoded interlocking Bento spans perfectly tailored for 6 items
+// Asymmetric interlocking Bento grid tailored specifically for 9 items
+// Based on a 4-column layout (md:grid-cols-4)
 const bentoSpans = [
-  'md:col-span-2 md:row-span-2', // Large Hero Piece
-  'md:col-span-1 md:row-span-1', // Small top right
-  'md:col-span-1 md:row-span-1', // Small top right edge
-  'md:col-span-2 md:row-span-1', // Wide middle right
-  'md:col-span-1 md:row-span-1', // Small bottom left
-  'md:col-span-1 md:row-span-1', // Small bottom middle
+  'md:col-span-2 md:row-span-2', // 1 - Large hero (Col 1-2, Row 1-2)
+  'md:col-span-1 md:row-span-1', // 2 - Small (Col 3, Row 1)
+  'md:col-span-1 md:row-span-2', // 3 - Tall (Col 4, Row 1-2)
+  'md:col-span-1 md:row-span-1', // 4 - Small (Col 3, Row 2)
+  'md:col-span-1 md:row-span-1', // 5 - Small (Col 1, Row 3)
+  'md:col-span-2 md:row-span-1', // 6 - Wide (Col 2-3, Row 3)
+  'md:col-span-1 md:row-span-1', // 7 - Small (Col 4, Row 3)
+  'md:col-span-1 md:row-span-1', // 8 - Small (Col 1, Row 4)
+  'md:col-span-3 md:row-span-1', // 9 - Ultra wide (Col 2-4, Row 4)
 ];
 
-// Staggered parallax speed multipliers for each grid item
-const parallaxSpeeds = [0.05, -0.05, 0.08, -0.02, 0.04, -0.06];
+// Staggered parallax speed multipliers for 9 items
+const parallaxSpeeds = [0.05, -0.05, 0.08, -0.02, 0.04, -0.06, 0.03, -0.04, 0.06];
 
 export default function PortfolioGrid() {
   const containerRef = useRef<HTMLElement>(null);
@@ -76,13 +80,13 @@ export default function PortfolioGrid() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className={`group relative overflow-hidden bg-black/5 cursor-pointer ${bentoSpans[i]}`}
               >
-                {/* Multiply blend mode so images sink into the grey background */}
-                <div className="absolute inset-0 mix-blend-multiply">
+                {/* Image Container */}
+                <div className="absolute inset-0">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover object-center grayscale transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>

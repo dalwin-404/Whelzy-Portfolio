@@ -195,21 +195,27 @@ export const services: ServiceItem[] = [
 
 /* ── Filterable Portfolio ────────────────────────────────────────────────── */
 
-export const filterCategories = ['All', 'Fashion Concept', 'Fashion Design', 'World Cup Tech Jacket'] as const;
+export const filterCategories = ['All', 'Fashion Concept', 'Commissioned Work', 'World Cup Tech Jacket'] as const;
 export type FilterCategory = typeof filterCategories[number];
 
 export const allPortfolioItems = [
-  // Fashion Concept
+  // --- USER'S TOP 9 SELECTED WORKS ---
   { id: 101, category: 'Fashion Concept', title: 'Bag Concept', image: '/images/fashion-concept/bag.jpeg', aspect: 'aspect-[3/4]' },
   { id: 102, category: 'Fashion Concept', title: 'Denim Jacket', image: '/images/fashion-concept/concept denim jacket.jpeg', aspect: 'aspect-[4/5]' },
-  { id: 103, category: 'Fashion Concept', title: 'Nike X OVO', image: '/images/fashion-concept/concept nike X ovo.jpeg', aspect: 'aspect-square' },
-  { id: 104, category: 'Fashion Concept', title: 'Concept Shoe', image: '/images/fashion-concept/concept shoe.jpeg', aspect: 'aspect-[4/3]' },
-  
-  // Fashion Design
-  { id: 201, category: 'Fashion Design', title: 'Sturdy', image: '/images/fashion-design/sturdy.jpeg', aspect: 'aspect-[3/4]' },
-  { id: 202, category: 'Fashion Design', title: 'Sturdy II', image: '/images/fashion-design/sturdy2.jpeg', aspect: 'aspect-[4/5]' },
-  { id: 203, category: 'Fashion Design', title: 'The Knockout', image: '/images/fashion-design/the knockout.jpeg', aspect: 'aspect-square' },
-  { id: 204, category: 'Fashion Design', title: 'Editorial Look', image: '/images/fashion-design/WhatsApp Image 2026-08-21 at 12.03.31 AM.jpeg', aspect: 'aspect-[2/3]' },
+  { id: 103, category: 'Fashion Concept', title: 'Louis Vuitton', image: '/images/fashion-concept/loius vulton.jpeg', aspect: 'aspect-square' },
+  { id: 104, category: 'Fashion Concept', title: 'Jean Trousers', image: '/images/fashion-concept/jean-trousers.jpeg', aspect: 'aspect-[4/3]' },
+  { id: 105, category: 'Fashion Concept', title: 'Jackets', image: '/images/fashion-concept/jackets.jpeg', aspect: 'aspect-[3/4]' },
+  { id: 106, category: 'Fashion Concept', title: 'Mule', image: '/images/fashion-concept/mule.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 107, category: 'Fashion Concept', title: 'Sketch', image: '/images/fashion-concept/sketch.jpeg', aspect: 'aspect-square' },
+  { id: 201, category: 'Commissioned Work', title: 'Two Trousers', image: '/images/fashion-design/two-trousers.jpeg', aspect: 'aspect-[2/3]' },
+  { id: 202, category: 'Commissioned Work', title: 'Three Jackets', image: '/images/fashion-design/three-jackets.jpeg', aspect: 'aspect-[16/9]' },
+
+  // --- REST OF THE PORTFOLIO (Leftovers) ---
+  { id: 203, category: 'Fashion Concept', title: 'Nike X OVO', image: '/images/fashion-concept/concept nike X ovo.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 204, category: 'Fashion Concept', title: 'Concept Shoe', image: '/images/fashion-concept/concept shoe.jpeg', aspect: 'aspect-square' },
+  { id: 205, category: 'Commissioned Work', title: 'Sturdy', image: '/images/fashion-design/sturdy.jpeg', aspect: 'aspect-[3/4]' },
+  { id: 206, category: 'Commissioned Work', title: 'Sturdy II', image: '/images/fashion-design/sturdy2.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 207, category: 'Commissioned Work', title: 'The Knockout', image: '/images/fashion-design/the knockout.jpeg', aspect: 'aspect-square' },
   
   // World Cup Tech Jacket
   { id: 301, category: 'World Cup Tech Jacket', title: 'Argentina Home', image: '/images/jacket-jersey/Argentina1.jpeg', aspect: 'aspect-[3/4]' },
