@@ -207,24 +207,49 @@ export const allPortfolioItems = [
   { id: 105, category: 'Fashion Concept', title: 'Jackets', image: '/images/fashion-concept/jackets.jpeg', aspect: 'aspect-[3/4]' },
   { id: 106, category: 'Fashion Concept', title: 'Mule', image: '/images/fashion-concept/mule.jpeg', aspect: 'aspect-[4/5]' },
   { id: 107, category: 'Fashion Concept', title: 'Sketch', image: '/images/fashion-concept/sketch.jpeg', aspect: 'aspect-square' },
-  { id: 201, category: 'Commissioned Work', title: 'Two Trousers', image: '/images/fashion-design/two-trousers.jpeg', aspect: 'aspect-[2/3]' },
-  { id: 202, category: 'Commissioned Work', title: 'Three Jackets', image: '/images/fashion-design/three-jackets.jpeg', aspect: 'aspect-[16/9]' },
+  { id: 108, category: 'Commissioned Work', title: 'Two Trousers', image: '/images/fashion-design/two-trousers.jpeg', aspect: 'aspect-[2/3]' },
+  { id: 109, category: 'Commissioned Work', title: 'Three Jackets', image: '/images/fashion-design/three-jackets.jpeg', aspect: 'aspect-[16/9]' },
 
-  // --- REST OF THE PORTFOLIO (Leftovers) ---
-  { id: 203, category: 'Fashion Concept', title: 'Nike X OVO', image: '/images/fashion-concept/concept nike X ovo.jpeg', aspect: 'aspect-[4/5]' },
-  { id: 204, category: 'Fashion Concept', title: 'Concept Shoe', image: '/images/fashion-concept/concept shoe.jpeg', aspect: 'aspect-square' },
-  { id: 205, category: 'Commissioned Work', title: 'Sturdy', image: '/images/fashion-design/sturdy.jpeg', aspect: 'aspect-[3/4]' },
-  { id: 206, category: 'Commissioned Work', title: 'Sturdy II', image: '/images/fashion-design/sturdy2.jpeg', aspect: 'aspect-[4/5]' },
-  { id: 207, category: 'Commissioned Work', title: 'The Knockout', image: '/images/fashion-design/the knockout.jpeg', aspect: 'aspect-square' },
-  
-  // World Cup Tech Jacket
-  { id: 301, category: 'World Cup Tech Jacket', title: 'Argentina Home', image: '/images/jacket-jersey/Argentina1.jpeg', aspect: 'aspect-[3/4]' },
-  { id: 302, category: 'World Cup Tech Jacket', title: 'Argentina Away', image: '/images/jacket-jersey/Argetina2.jpeg', aspect: 'aspect-[4/5]' },
-  { id: 303, category: 'World Cup Tech Jacket', title: 'Argentina Third', image: '/images/jacket-jersey/Argentina3.jpeg', aspect: 'aspect-square' },
-  { id: 304, category: 'World Cup Tech Jacket', title: 'Brazil Home', image: '/images/jacket-jersey/brazil1.jpeg', aspect: 'aspect-[4/5]' },
-  { id: 305, category: 'World Cup Tech Jacket', title: 'Brazil Away', image: '/images/jacket-jersey/brazil2.jpeg', aspect: 'aspect-[3/4]' },
-  { id: 306, category: 'World Cup Tech Jacket', title: 'Brazil Third', image: '/images/jacket-jersey/brazil3.jpeg', aspect: 'aspect-[2/3]' },
+  // --- Fashion Concept ---
+  { id: 200, category: 'Fashion Concept', title: 'Addidas', image: '/images/fashion-concept/addidas.jpeg', aspect: 'aspect-[3/4]' },
+  { id: 202, category: 'Fashion Concept', title: 'Butterfly', image: '/images/fashion-concept/butterfly.jpeg', aspect: 'aspect-[3/4]' },
+  { id: 204, category: 'Fashion Concept', title: 'Nike X OVO', image: '/images/fashion-concept/concept nike X ovo.jpeg', aspect: 'aspect-[3/4]' },
+  { id: 205, category: 'Fashion Concept', title: 'Concept Shoe', image: '/images/fashion-concept/concept shoe.jpeg', aspect: 'aspect-[3/4]' },
+  { id: 206, category: 'Fashion Concept', title: 'Hand', image: '/images/fashion-concept/hand.jpeg', aspect: 'aspect-[3/4]' },
+  { id: 207, category: 'Fashion Concept', title: 'Iceman', image: '/images/fashion-concept/iceman.jpeg', aspect: 'aspect-[3/4]' },
+  { id: 213, category: 'Fashion Concept', title: 'Trousers', image: '/images/fashion-concept/trousers.jpeg', aspect: 'aspect-[3/4]' },
+
+  // --- Commissioned Work ---
+  { id: 300, category: 'Commissioned Work', title: '2 Cross', image: '/images/fashion-design/2-cross.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 301, category: 'Commissioned Work', title: 'Brand Short', image: '/images/fashion-design/brand-short.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 302, category: 'Commissioned Work', title: 'Brown Capsw', image: '/images/fashion-design/brown-capsw.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 303, category: 'Commissioned Work', title: 'Cross', image: '/images/fashion-design/cross.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 304, category: 'Commissioned Work', title: 'Four Black', image: '/images/fashion-design/four-black.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 305, category: 'Commissioned Work', title: 'Four Caps', image: '/images/fashion-design/four-caps.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 306, category: 'Commissioned Work', title: 'Joggers', image: '/images/fashion-design/joggers.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 307, category: 'Commissioned Work', title: 'Marrucio', image: '/images/fashion-design/marrucio.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 308, category: 'Commissioned Work', title: 'Retro', image: '/images/fashion-design/retro.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 309, category: 'Commissioned Work', title: 'Sturdy Cap', image: '/images/fashion-design/sturdy-cap.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 310, category: 'Commissioned Work', title: 'Sturdy', image: '/images/fashion-design/sturdy.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 311, category: 'Commissioned Work', title: 'Sturdy2', image: '/images/fashion-design/sturdy2.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 312, category: 'Commissioned Work', title: 'The Knockout', image: '/images/fashion-design/the knockout.jpeg', aspect: 'aspect-[4/5]' },
+  { id: 314, category: 'Commissioned Work', title: 'Two Short', image: '/images/fashion-design/two-short.jpeg', aspect: 'aspect-[4/5]' },
+
+  // --- World Cup Tech Jacket ---
+  { id: 400, category: 'World Cup Tech Jacket', title: 'Argentina1', image: '/images/jacket-jersey/Argentina1.jpeg', aspect: 'aspect-square' },
+  { id: 401, category: 'World Cup Tech Jacket', title: 'Argetina2', image: '/images/jacket-jersey/Argetina2.jpeg', aspect: 'aspect-square' },
+  { id: 402, category: 'World Cup Tech Jacket', title: 'Argentina3', image: '/images/jacket-jersey/Argentina3.jpeg', aspect: 'aspect-square' },
+  { id: 403, category: 'World Cup Tech Jacket', title: 'Brazil1', image: '/images/jacket-jersey/brazil1.jpeg', aspect: 'aspect-square' },
+  { id: 404, category: 'World Cup Tech Jacket', title: 'Brazil2', image: '/images/jacket-jersey/brazil2.jpeg', aspect: 'aspect-square' },
+  { id: 405, category: 'World Cup Tech Jacket', title: 'Brazil3', image: '/images/jacket-jersey/brazil3.jpeg', aspect: 'aspect-square' },
+  { id: 406, category: 'World Cup Tech Jacket', title: 'Port1', image: '/images/jacket-jersey/Port1.jpeg', aspect: 'aspect-square' },
+  { id: 407, category: 'World Cup Tech Jacket', title: 'Port2', image: '/images/jacket-jersey/port2.jpeg', aspect: 'aspect-square' },
+  { id: 408, category: 'World Cup Tech Jacket', title: 'Port3', image: '/images/jacket-jersey/port3.jpeg', aspect: 'aspect-square' },
+  { id: 409, category: 'World Cup Tech Jacket', title: 'Spain1', image: '/images/jacket-jersey/spain1.jpeg', aspect: 'aspect-square' },
+  { id: 410, category: 'World Cup Tech Jacket', title: 'Spain2', image: '/images/jacket-jersey/spain2.jpeg', aspect: 'aspect-square' },
+  { id: 411, category: 'World Cup Tech Jacket', title: 'Spain3', image: '/images/jacket-jersey/spain3.jpeg', aspect: 'aspect-square' },
 ];
+
 
 /* ── Social Links ────────────────────────────────────────────────────────── */
 
